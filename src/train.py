@@ -216,6 +216,7 @@ if torch.cuda.is_available():
     
 train_loader = DataLoaderLite(B=2, T=1024)
 
+torch.set_float32_matmul_precision('high')
 
 model = RB(RBConfig())
 model.to('cuda')
@@ -233,12 +234,16 @@ for i in range(50):
     x, y = train_loader.next_batch()
     x, y = x.to(device), y.to(device)
     optimizer.zero_grad()
-    torch.cuda.synchronize()
-    t1 = time.time()
-    dt = (t1 - t0)*1000
-    logits, loss = model(x, y)
+    with torch.autocast(device_type=device, dtype=torch.bfloat16):
+        logits, loss = model(x, y)
     loss.backward()
-    print(f"step {i}, loss: {loss.item()}, dt: {dt:.2f}ms")
+    optimizer.step()
+    print(f"step {i}, loss: {loss.item()}")
+    torch.cuda.synchronize() # wait for the GPU to finish work
+    t1 = time.time()
+    dt = (t1 - t0)*1000 # time difference in miliseconds
+    tokens_per_sec = (train_loader.B * train_loader.T) / (t1 - t0)
+    print(f"step {i}, loss: {loss.item()}, dt: {dt:.2f}ms, tok/sec: {tokens_per_sec:.2f}")
     
     
 import sys; sys.exit(0)
