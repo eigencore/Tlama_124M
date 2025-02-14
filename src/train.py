@@ -214,12 +214,13 @@ torch.manual_seed(1337)
 if torch.cuda.is_available():
     torch.cuda.manual_seed(1337)
     
-train_loader = DataLoaderLite(B=4, T=1024)
+train_loader = DataLoaderLite(B=2, T=1024)
 
 torch.set_float32_matmul_precision('high')
 
 model = RB(RBConfig())
 model.to('cuda')
+model = torch.compile(model)
 # logits, loss = model(x.to('cuda'), y.to('cuda'))
 
 #Num of parameters
