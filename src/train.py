@@ -236,7 +236,6 @@ for i in range(50):
     optimizer.zero_grad()
     with torch.autocast(device_type=device, dtype=torch.bfloat16):
         logits, loss = model(x, y)
-        import code; code.interact(local=locals())
     loss.backward()
     optimizer.step()
     print(f"step {i}, loss: {loss.item()}")
