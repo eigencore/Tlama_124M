@@ -204,6 +204,9 @@ class DataLoaderLite:
             self.current_position = 0
         return x, y
 # -----------------------------------------------------------------------------
+
+import time
+
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 print(f"using device: {device}")
 
@@ -211,7 +214,7 @@ torch.manual_seed(1337)
 if torch.cuda.is_available():
     torch.cuda.manual_seed(1337)
     
-train_loader = DataLoaderLite(B=4, T=32)
+train_loader = DataLoaderLite(B=16, T=1024)
 
 
 model = RB(RBConfig())
@@ -226,12 +229,16 @@ print(f"num_params: {num_params}")
 # Optimizer
 optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4)
 for i in range(50):
+    t0 = time.time()
     x, y = train_loader.next_batch()
     x, y = x.to(device), y.to(device)
     optimizer.zero_grad()
+    torch.sychronize()
+    t1 = time.time()
+    dt = (t1 - t0)*1000
     logits, loss = model(x, y)
     loss.backward()
-    print(f"step {i}, loss: {loss.item()}")
+    print(f"step {i}, loss: {loss.item()}, dt: {dt:.2f}ms")
     
     
 import sys; sys.exit(0)
