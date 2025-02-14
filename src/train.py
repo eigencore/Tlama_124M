@@ -233,7 +233,7 @@ for i in range(50):
     x, y = train_loader.next_batch()
     x, y = x.to(device), y.to(device)
     optimizer.zero_grad()
-    torch.sychronize()
+    torch.cuda.synchronize()
     t1 = time.time()
     dt = (t1 - t0)*1000
     logits, loss = model(x, y)
