@@ -8,7 +8,7 @@ import tiktoken
 import numpy as np
 
 from src.model import RB, RBConfig
-from hellaswag import render_example, iterate_examples
+from src.hellaswag import render_example, iterate_examples
 
 def load_tokens(filename):
     npt = np.load(filename)
