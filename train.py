@@ -48,10 +48,10 @@ class DataLoaderLite:
         x = (buf[:-1]).view(B, T) # inputs
         y = (buf[1:]).view(B, T) # targets
         
-        indices = torch.randperm(B)
+        # indices = torch.randperm(B)
         
-        x = x[indices]
-        y = y[indices]
+        # x = x[indices]
+        # y = y[indices]
         
         # advance the position in the tensor
         self.current_position += B * T * self.num_processes
