@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+edu_fineweb10B/
+
 # C extensions
 *.so
 
