@@ -7,7 +7,7 @@ from torch.nn import functional as F
 import tiktoken
 import numpy as np
 
-from model import RB, RBConfig
+from src.model import RB, RBConfig
 from hellaswag import render_example, iterate_examples
 
 def load_tokens(filename):
