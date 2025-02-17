@@ -65,7 +65,7 @@ def generate_text(prompt, max_length=29, top_k=50, top_p=0.9, temperature=1.0):
     return enc.decode(tokens.squeeze(0).tolist())
 
 # Modo interactivo en terminal
-print("TinyRB model ready. Type a text and press ENTER to complete it (CTRL+C to exit).")
+print("Tlama model ready. Type a text and press ENTER to complete it (CTRL+C to exit).")
 while True:
     try:
         user_input = input("\nPrompt: ")
