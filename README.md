@@ -58,7 +58,7 @@ This work has been developed by:
 - **A. León** (EigenCore) - aleon@eigencore.org
 
 ## License
-This project is distributed under the MIT license. For more details, see the `LICENSE` file.
+This project is distributed under the APACHE 2.0 License. See `LICENSE` for more information.
 
 ---
 For more information about this project, refer to the full report in `pending..`.
