@@ -3,6 +3,7 @@ import tiktoken
 import random
 import numpy as np
 from src.model import RB, RBConfig
+import time  # Importar la librería time
 
 # Establecer la semilla para reproducibilidad
 seed = 42
@@ -27,7 +28,7 @@ model.eval()
 # Cargar el tokenizer
 enc = tiktoken.get_encoding("gpt2")
 
-def generate_text(prompt, max_length=30, top_k=50, top_p=0.9, temperature=1.0):
+def generate_text(prompt, max_length=29, top_k=50, top_p=0.9, temperature=1.0):
     """Genera texto autocompletando el prompt usando el modelo TinyRB"""
     tokens = enc.encode(prompt)
     tokens = torch.tensor(tokens, dtype=torch.long, device=device).unsqueeze(0)
@@ -54,6 +55,10 @@ def generate_text(prompt, max_length=30, top_k=50, top_p=0.9, temperature=1.0):
             next_token = topk_indices.gather(-1, next_token)
 
             tokens = torch.cat((tokens, next_token), dim=1)
+            word = enc.decode([next_token.item()])
+            print(word, end='', flush=True)  # Imprimir palabra por palabra
+            time.sleep(0.1)  # Pausa para dar la ilusión de generación
+
             if next_token.item() == enc.eot_token:  # Token de finalización
                 break
 
@@ -64,8 +69,9 @@ print("TinyRB model ready. Type a text and press ENTER to complete it (CTRL+C to
 while True:
     try:
         user_input = input("\nPrompt: ")
+        print("Tlama: ", end='')
         output = generate_text(user_input, top_k=50, top_p=0.9, temperature=0.7)
-        print("\Tlama: " + output)
+        print("\n")
     except KeyboardInterrupt:
         print("\nExiting...")
         break
