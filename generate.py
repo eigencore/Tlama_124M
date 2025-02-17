@@ -65,7 +65,7 @@ while True:
     try:
         user_input = input("\nPrompt: ")
         output = generate_text(user_input, top_k=50, top_p=0.9, temperature=0.7)
-        print("\nTinyRB: " + output)
+        print("\Tlama: " + output)
     except KeyboardInterrupt:
         print("\nExiting...")
         break
