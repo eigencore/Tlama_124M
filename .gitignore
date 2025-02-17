@@ -3,7 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 log/
-
+train.py
+play.ipynb
 # C extensions
 *.so
 
