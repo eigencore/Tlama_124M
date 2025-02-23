@@ -2,7 +2,7 @@ import torch
 import tiktoken
 import random
 import numpy as np
-from src.model import RB, RBConfig
+from src.model import Tlama, RBConfig
 import time  # Importar la librería time
 
 # Establecer la semilla para reproducibilidad
@@ -19,8 +19,9 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 
 # Cargar el checkpoint
 checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=False)
+print(checkpoint.keys())
 config = checkpoint['config']
-model = RB(config)
+model = Tlama(config)
 model.load_state_dict(checkpoint['model'])
 model.to(device)
 model.eval()
@@ -29,7 +30,7 @@ model.eval()
 enc = tiktoken.get_encoding("gpt2")
 
 def generate_text(prompt, max_length=29, top_k=50, top_p=0.9, temperature=1.0):
-    """Genera texto autocompletando el prompt usando el modelo TinyRB"""
+    """Genera texto autocompletando el prompt usando el modelo Tlama."""
     tokens = enc.encode(prompt)
     tokens = torch.tensor(tokens, dtype=torch.long, device=device).unsqueeze(0)
 

@@ -1,64 +1,57 @@
-# Tlama: Efficient Implementation of GPT-2 (127M)
+# Tlama (124M) - Compact & Efficient Language Model
 
-## Overview
-Tlama is an optimized implementation of the GPT-2 (127M) model, developed under the EigenCore research initiative. This project focuses on reducing computational time and resource requirements while maintaining competitive performance.
+<div align="center">
+  <img src="EC.png" alt="EigenCore" style="display: inline-block; margin-right: 20px;">
+  <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face" style="display: inline-block;">
+</div>
 
-This repository contains the source code and documentation related to Tlama, including architectural improvements, training optimizations, and performance analysis.
+Tlama (124M) is a language model based on **GPT-2 (127M)** optimized by **EigenCore**. It is designed for **computational efficiency and scalability**, allowing its use on resource-limited hardware without compromising performance.
 
-## Features
-- **Architectural Optimization**: Based on GPT-2 (124M) with adjustments in pre-training and hyperparameter configurations.
-- **Reduced Computational Costs**: Utilizes techniques such as Flash Attention, mixed-precision training, and distributed data parallel (DDP).
-- **Curated Pre-Training Dataset**: Uses the edu_fineweb10B dataset, optimized for reasoning and language comprehension tasks.
-- **Scalability**: Supports multi-GPU training and configurations optimized for resource-limited hardware.
+## 🚀 Key Features
+- **Architecture based on GPT-2 (124M)** with efficiency improvements.
+- **Trained on the edu_fineweb10B dataset**, a subset of FineWeb with 10 billion tokens.
+- **Compatible with Hugging Face `transformers`**.
+- **Advanced optimizations:** Flash Attention, Mixed Precision Training, Gradient Clipping, Torch.compile.
+- **Trainable on consumer hardware**, such as NVIDIA RTX 4060 GPUs.
 
-## Installation
-### Prerequisites
-To run this project, ensure you have:
-- Python 3.8+
-- PyTorch 2.0+
-- CUDA 11.8+ (optional for GPU acceleration)
-- Additional dependencies (installable via `pip`):
+## 📌 Using the Model on Hugging Face
+You can easily load Tlama (124M) with `transformers`:
 
-```sh
-pip install -r requirements.txt
+```python
+from transformers import AutoModel, AutoTokenizer
+
+model = AutoModel.from_pretrained("eigencore/tlama-124M", trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained("eigencore/tlama-124M", trust_remote_code=True)
+
+prompt = "Once upon a time in a distant kingdom..."
+input_ids = tokenizer.encode(prompt, return_tensors="pt")
+
+output = model.generate(input_ids, max_length=50, num_return_sequences=1)
+print(tokenizer.decode(output[0], skip_special_tokens=True))
 ```
 
-## Usage
-### Training
-To train Tlama from scratch, run:
-```sh
-python train.py --config config/tlama.yaml
-```
-<!--
-### Evaluation
-To evaluate the model on benchmarks such as HellaSwag:
-```sh
-python evaluate.py --model-checkpoint path/to/checkpoint
-``` -->
+## 📖 Architecture and Training Data
+- **Model:** Based on GPT-2 with **124M parameters**.
+- **Dataset:** edu_fineweb10B, a web-crawled dataset with 10B tokens.
+- **Infrastructure:** Trained on **8 NVIDIA A100 GPUs**, optimized for training on consumer hardware.
+- **Optimization Techniques:**
+  - **Weight Tying** to reduce parameters.
+  - **Flash Attention** for faster inference.
+  - **Gradient Accumulation** to train with lower VRAM requirements.
+  - **Learning Rate Scheduling** with warmup and cosine decay.
 
-## Optimization Techniques
-Tlama incorporates various optimizations to enhance efficiency:
-- **Parameter Sharing**: Reuses weights between the embedding and output layers.
-- **Flash Attention**: Reduces the computational cost of the self-attention mechanism.
-- **Mixed-Precision Training (bfloat16/float16)**: Speeds up computations and reduces memory consumption.
-- **Gradient Clipping**: Prevents training instability.
-- **torch.compile Usage**: Improves execution performance by fusing model operations.
+## 📊 Benchmark and Performance
+Compared to GPT-2 (124M), Tlama (124M):
+✅ **Reduces inference time** thanks to computational optimizations.
+✅ **Shows competitive performance on language modeling tasks**.
+✅ **Enables efficient training on accessible hardware**.
 
-## Results
-The Tlama model outperforms GPT-2 (124M) on the HellaSwag benchmark, achieving better performance in text prediction tasks. Full performance details and analysis can be found in `pending..`.
-
-## Future Work
-- Implementation of a scaled version of Tlama following Scaling Laws.
-- Evaluation on additional natural language understanding benchmarks.
-- Further training optimizations to enhance efficiency and performance.
-
-## Authors
-This work has been developed by:
-- **M. Galindo** (EigenCore) - max@eigencore.org
-- **A. León** (EigenCore) - aleon@eigencore.org
-
-## License
-This project is distributed under the APACHE 2.0 License. See `LICENSE` for more information.
+## 📩 Contact & Contributions
+This model is developed by **EigenCore**.
+- 🌐 More info: [eigencore.org](https://eigencore.org)
+- 📧 Contact: max@eigencore.org
+- 🛠️ Contributions: Open to the community!
 
 ---
-For more information about this project, refer to the full report in `pending..`.
+Explore Tlama (124M) and help us build more efficient AI models! 🚀
+
