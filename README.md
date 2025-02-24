@@ -1,8 +1,8 @@
 # Tlama (124M) - Compact & Efficient Language Model
 
 <div align="center">
-  <img src="EC.png" alt="EigenCore" width="150" style="margin-right: 20px;">
-  <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face" width="150">
+  <img src="https://eigencore.org/wp-content/uploads/2025/02/Tlama.png" alt="EigenCore" width="150" style="margin-right: 20px;">
+  <!--img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face" width="150"-->
 </div>
 
 Tlama (124M) is a language model based on **GPT-2 (127M)** optimized by **EigenCore**. It is designed for **computational efficiency and scalability**, allowing its use on resource-limited hardware without compromising performance.
