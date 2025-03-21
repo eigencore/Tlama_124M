@@ -1,1 +1,1 @@
-from .model import RB, RBConfig
+from .model import Tlama, RBConfig
