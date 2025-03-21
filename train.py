@@ -12,7 +12,7 @@ from src.hellaswag import render_example, iterate_examples
 
 def load_tokens(filename):
     npt = np.load(filename)
-    npt = npt.astype(np.int32) # added after video
+    npt = npt.astype(np.int32) 
     ptt = torch.tensor(npt, dtype=torch.long)
     return ptt
 
@@ -87,9 +87,9 @@ def get_most_likely_row(tokens, mask, logits):
 
 # -----------------------------------------------------------------------------
 # simple launch:
-# python train_gpt2.py
+# python train.py
 # DDP launch for e.g. 8 GPUs:
-# torchrun --standalone --nproc_per_node=8 train_gpt2.py
+# torchrun --standalone --nproc_per_node=8 train.py
 
 # run the training loop
 from torch.distributed import init_process_group, destroy_process_group
