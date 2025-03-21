@@ -5,8 +5,14 @@ __pycache__/
 
 edu_fineweb10B/
 
+edu_fineweb10B.tar.gz
+log/
+
+
 # C extensions
 *.so
+
+
 
 # Distribution / packaging
 .Python
