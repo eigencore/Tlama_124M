@@ -133,11 +133,7 @@ if torch.cuda.is_available():
 enc = tiktoken.get_encoding("gpt2")
 
 total_batch_size = 524288 # 2**19, ~0.5M, in number of tokens
-<<<<<<< HEAD
-B = 4 # micro batch size
-=======
 B = 64 # micro batch size
->>>>>>> ab149e22cb1b878462a6eaa2669c270e4d2b1a6f
 T = 1024 # sequence length
 assert total_batch_size % (B * T * ddp_world_size) == 0, "make sure total_batch_size is divisible by B * T * ddp_world_size"
 grad_accum_steps = total_batch_size // (B * T * ddp_world_size)
