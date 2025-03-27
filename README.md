@@ -5,12 +5,12 @@
   <!--img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face" width="150"-->
 </div>
 
-Tlama (124M) is a language model based on **GPT-2 (127M)** optimized by **EigenCore**. It is designed for **computational efficiency and scalability**, allowing its use on resource-limited hardware without compromising performance.
+Tlama (124M) is a language model based on **LLaMa (127M)** optimized by **EigenCore**. It is designed for **computational efficiency and scalability**, allowing its use on resource-limited hardware without compromising performance.
 
 This is just the beginning of a development aimed at creating more **competitive and efficient language models**. Future iterations will focus on improving accuracy, adaptability, and hardware efficiency.
 
 ## 🚀 Key Features
-- **Architecture based on GPT-2 (124M)** with efficiency improvements.
+- **Architecture based on LLaMa (124M)** with efficiency improvements.
 - **Trained on the edu_fineweb10B dataset**, a subset of FineWeb with 10 billion tokens.
 - **Compatible with Hugging Face `transformers`**.
 - **Advanced optimizations:** Flash Attention, Mixed Precision Training, Gradient Clipping, Torch.compile.
@@ -33,7 +33,7 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 ```
 
 ## 📖 Architecture and Training Data
-- **Model:** Based on GPT-2 with **124M parameters**.
+- **Model:** Based on LLaMa with **124M parameters**.
 - **Dataset:** edu_fineweb10B, a web-crawled dataset with 10B tokens.
 - **Infrastructure:** Trained on **8 NVIDIA A100 GPUs**, optimized for training on consumer hardware.
 - **Optimization Techniques:**
@@ -43,7 +43,7 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
   - **Learning Rate Scheduling** with warmup and cosine decay.
 
 ## 📊 Benchmark and Performance
-Compared to GPT-2 (124M), Tlama (124M):
+Compared to LLaMa (124M), Tlama (124M):
 ✅ **Reduces inference time** thanks to computational optimizations.
 ✅ **Shows competitive performance on language modeling tasks**.
 ✅ **Enables efficient training on accessible hardware**.
