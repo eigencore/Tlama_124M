@@ -1,7 +1,7 @@
 # Tlama (124M) - Compact & Efficient Language Model
 
 <div align="center">
-  <img src="https://eigencore.org/wp-content/uploads/2025/02/Tlama.png" alt="EigenCore" width="150" style="margin-right: 20px;">
+  <img src="https://raw.githubusercontent.com/eigencore/Tlama_124M/refs/heads/main/EC.png" alt="EigenCore" width="150" style="margin-right: 20px;">
   <!--img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face" width="150"-->
 </div>
 
@@ -51,7 +51,7 @@ Compared to LLaMa (124M), Tlama (124M):
 ## 📩 Contact & Contributions
 This model is developed by **EigenCore**.
 - 🌐 More info: [eigencore.org](https://eigencore.org)
-- 📧 Contact: max@eigencore.org
+- 📧 Contact: max@eigencore.ai
 - 🛠️ Contributions: Open to the community!
 
 ---
